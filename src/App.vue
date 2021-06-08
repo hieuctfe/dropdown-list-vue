@@ -1,12 +1,14 @@
 <template>
-  <Dropdown
-    v-for="(dropdown, index) in dropdowns"
-    :ref="`dropdown-${index}`"
-    @selected="(data) => seleteData(data, index)"
-    :defaultSelected="'ab'"
-    :options="dropdown"
-    :key="index"
-  />
+  <div class="all-dropdown-container">
+    <Dropdown
+      v-for="(dropdown, index) in dropdowns"
+      :ref="`dropdown-${index}`"
+      @selected="(data) => seleteData(data, index)"
+      :defaultSelected="'ab'"
+      :options="dropdown"
+      :key="index"
+    />
+  </div>
 </template>
 
 <script>
@@ -104,5 +106,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.all-dropdown-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
