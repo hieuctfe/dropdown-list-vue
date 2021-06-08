@@ -134,7 +134,11 @@ export default {
   methods: {
     seleteData(data, index) {
       console.log(data);
-      if (this.dropdowns[index + 1]) this.dropdowns[index + 1].isShow = true;
+      if (this.dropdowns[index + 1]) {
+        this.dropdowns[index + 1].isShow = true;
+      } else {
+        this.$emit("complete");
+      }
     },
   },
 };

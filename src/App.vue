@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <img style="margin-bottom: 20px" :src="'./2.jpg'" />
-    <MultipleDropdown />
+    <MultipleDropdown @complete="isDone = true" />
     <div><button @click="moveToNext">Search Part</button></div>
     <img style="margin-top: 20px" class="bottom-image" :src="'./1.jpg'" />
   </div>
@@ -15,11 +15,20 @@ export default {
   components: {
     MultipleDropdown,
   },
-  computed: {},
+  data() {
+    return {
+      isDone: false,
+    };
+  },
+
   methods: {
     moveToNext() {
-      window.location.href =
-        "https://www.partsgeek.com/ymm/2020/autocar_llc-dt-/xpeditor.html";
+      if (this.isDone) {
+        window.location.href =
+          "https://www.partsgeek.com/ymm/2020/autocar_llc-dt-/xpeditor.html";
+      } else {
+        alert("Please complete the flow");
+      }
     },
   },
 };
