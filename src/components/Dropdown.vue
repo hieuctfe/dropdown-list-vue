@@ -4,6 +4,7 @@
     <input
       class="dropdown-input"
       :name="name"
+      inputmode='none'
       @focus.prevent="showOptions"
       @blur="exit"
       @keyup="keyMonitor"
