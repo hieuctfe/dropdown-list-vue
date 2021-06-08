@@ -15,7 +15,7 @@
         </div>
         <Dropdown
           class="dropdown-container"
-          :key="dropdowns[index - 1] && dropdowns[index - 1].isShow"
+          :key="dropdowns[index - 1] && dropdowns[index - 1].selected"
           :ref="`dropdown-${index}`"
           @selected="(data) => seleteData(data, index)"
           :defaultSelected="'ab'"
@@ -135,6 +135,8 @@ export default {
   computed: {},
   methods: {
     seleteData(data, index) {
+      this.dropdowns[index].selected = data.id;
+
       console.log(data);
       if (this.dropdowns[index + 1]) {
         this.dropdowns[index + 1].isShow = true;
