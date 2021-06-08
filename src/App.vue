@@ -8,7 +8,10 @@
     >
       <div class="dropdown-label">
         <span>Choose {{ dropdown.label }}:</span>
-        <span class="gg-arrow-long-right"></span>
+        <div class="arrow">
+          <div class="line"></div>
+          <div class="point"></div>
+        </div>
       </div>
       <Dropdown
         class="dropdown-container"
@@ -152,6 +155,7 @@ export default {
   .dropdown-with-label {
     display: flex;
     margin-top: 10px;
+    justify-content: center;
     .dropdown-label {
       vertical-align: middle;
       line-height: 29px;
@@ -160,29 +164,27 @@ export default {
       span:nth-child(1) {
         margin-right: 20px;
       }
-      .gg-arrow-long-right {
-        box-sizing: border-box;
-        position: relative;
+      .arrow {
+        width: 120px;
         display: inline-block;
-        transform: scale(var(--ggs, 1));
-        border-top: 2px solid transparent;
-        border-bottom: 2px solid transparent;
-        box-shadow: inset 0 0 0 2px;
-        width: 100px;
-        height: 10px;
+        vertical-align: middle;
       }
-      .gg-arrow-long-right::after {
-        content: "";
-        display: block;
-        box-sizing: border-box;
-        position: absolute;
-        width: 10px;
+
+      .line {
+        margin-top: 10px;
+        width: 100px;
+        background: #ef6f1a;
         height: 10px;
-        border-top: 2px solid;
-        border-right: 2px solid;
-        transform: rotate(45deg);
-        right: 0;
-        bottom: -2px;
+        float: left;
+      }
+
+      .point {
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 20px solid #ef6f1a;
+        float: right;
       }
     }
     .dropdown-container {
