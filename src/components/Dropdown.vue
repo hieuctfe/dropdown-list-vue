@@ -4,7 +4,7 @@
     <input
       class="dropdown-input"
       :name="name"
-      inputmode='none'
+      inputmode="none"
       @focus.prevent="showOptions"
       @blur="exit"
       @keyup="keyMonitor"
@@ -198,10 +198,14 @@ export default {
     list-style-type: none;
     display: flex;
     padding: 2px 4px 2px 8px;
+    @media screen and (max-width: 640px) {
+      display: block;
+    }
     .dropdown-content {
       list-style-type: none;
       min-width: 100px;
       padding: 0;
+      margin: 0;
       .dropdown-item {
         color: black;
         font-size: 0.7em;
