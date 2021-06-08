@@ -1,42 +1,44 @@
 <template>
-  <div class="dropdown" v-if="options">
-    <!-- Dropdown Input -->
-    <input
-      class="dropdown-input"
-      :name="name"
-      inputmode="none"
-      @focus.prevent="showOptions"
-      @blur="exit"
-      @keyup="keyMonitor"
-      v-model="searchFilter"
-      :disabled="disabled"
-      :placeholder="placeholder"
-    />
+  <div>
+    <div class="dropdown" v-if="options">
+      <!-- Dropdown Input -->
+      <input
+        class="dropdown-input"
+        :name="name"
+        inputmode="none"
+        @focus.prevent="showOptions"
+        @blur="exit"
+        @keyup="keyMonitor"
+        v-model="searchFilter"
+        :disabled="disabled"
+        :placeholder="placeholder"
+      />
 
-    <!-- Dropdown Menu -->
-    <div class="dropdown-items-container" v-show="optionsShown">
-      <ul
-        class="dropdown-content"
-        v-for="(collumn, index) in numberOfCollumn"
-        :key="index"
-      >
-        <li
-          class="dropdown-item"
-          @mousedown="selectOption(option)"
-          v-for="(option, cIndex) in getCollumnNth(index)"
-          :key="'cIndex' + cIndex"
+      <!-- Dropdown Menu -->
+      <div class="dropdown-items-container" v-show="optionsShown">
+        <ul
+          class="dropdown-content"
+          v-for="(collumn, index) in numberOfCollumn"
+          :key="index"
         >
-          {{ option.name || option.id || "-" }}
-        </li>
-      </ul>
-    </div>
+          <li
+            class="dropdown-item"
+            @mousedown="selectOption(option)"
+            v-for="(option, cIndex) in getCollumnNth(index)"
+            :key="'cIndex' + cIndex"
+          >
+            {{ option.name || option.id || "-" }}
+          </li>
+        </ul>
+      </div>
 
-    <!-- Arrow -->
-    <div
-      class="arrow arrow-down"
-      :class="{ 'arrow-up': optionsShown }"
-      @mousedown="showOptions"
-    ></div>
+      <!-- Arrow -->
+      <div
+        class="arrow arrow-down"
+        :class="{ 'arrow-up': optionsShown }"
+        @mousedown="showOptions"
+      ></div>
+    </div>
   </div>
 </template>
 
@@ -82,7 +84,7 @@ export default {
     },
     maxItemPercolumn: {
       type: Number,
-      default: 2,
+      default: 10000,
       note: "Number of item per collumn",
     },
   },
@@ -154,12 +156,7 @@ export default {
     // Selecting first one when pressing Enter
     keyMonitor: function(event) {
       if (event.key === "Enter" && this.filteredOptions[0]) {
-        const selectOption = this.options.find(
-          (_) => _.name === this.searchFilter
-        );
-        if (selectOption) {
-          this.selectOption();
-        }
+        this.selectOption(this.filteredOptions[0]);
       }
     },
   },
@@ -175,7 +172,7 @@ export default {
 <style lang="scss" scoped>
 .dropdown {
   position: relative;
-  display: block;
+  display: inline-block;
   margin: auto;
   .arrow {
     border: solid black;
@@ -230,6 +227,7 @@ export default {
     .dropdown-content {
       list-style-type: none;
       min-width: 100px;
+      width: 100%;
       padding: 0;
       margin: 0;
       .dropdown-item {
