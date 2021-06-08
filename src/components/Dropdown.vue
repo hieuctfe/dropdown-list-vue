@@ -30,6 +30,13 @@
         </li>
       </ul>
     </div>
+
+    <!-- Arrow -->
+    <div
+      class="arrow arrow-down"
+      :class="{ 'arrow-up': optionsShown }"
+      @mousedown="showOptions"
+    ></div>
   </div>
 </template>
 
@@ -170,6 +177,25 @@ export default {
   position: relative;
   display: block;
   margin: auto;
+  .arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  .arrow-down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  .arrow-up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
   .dropdown-input {
     background: #fff;
     cursor: pointer;
