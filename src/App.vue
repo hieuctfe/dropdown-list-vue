@@ -50,7 +50,7 @@ button {
   height: 70px;
   margin-top: 20px;
 }
-button :hover {
+button:hover {
   cursor: pointer;
 }
 </style>
